@@ -71,9 +71,11 @@
 
                                 setTimeout(() => {
 
-                                    alert('Error, try again.');
+                                    alert('There was an error communicating with the IPFS node API.' +
+                                          ' Please ensure the daemon is running, that it is in writable ' +
+                                          'mode and that you have enabled CORS.');
 
-                                }, 30000);
+                                }, 500);
                             });
                             req.open("post", window.location.protocol + "//" + window.location.hostname + ":5001/api/v0/add?stream-channels=true");
                             req.send(f);
@@ -199,8 +201,11 @@ Code blocks
             <span class="loading"><em>Loading...</em></span>
 
             <section>
-                <h3>Your essay</h3>
-                <a id="essay-link" href="://ipfs.io" target="_blank">ipfs.io</a>
+                <h3>Your essay link</h3>
+                <p>
+                Here's the permanent, immutable link to your essay:
+                </p>
+                <a id="essay-link" href="" target="_blank"></a>
                 <button class="pure-button">Close</button>
             </section>
         </div>
