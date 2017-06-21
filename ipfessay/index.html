@@ -17,69 +17,19 @@
 
         <link rel="stylesheet" href="assets/css/main.css">
         <link rel="stylesheet" href="assets/css/simplemde.min.css">
+
         <script src="assets/js/simplemde.min.js"></script>
+        <script src="assets/js/script.js"></script>
 
-        <script>
-            $ = function (id) { return document.getElementById(id); };
-
-            function publishCallback() {
-                var url = "/ipfs/" + JSON.parse(this.responseText).Hash;
-
-                $("published-link").innerHTML = 'Link: <a href="' + url + '">' + url + '</a>';
-            }
-
-            function renderPage(md) {
-                return '<html><head><meta name="viewport" content="width=device-width, initial-scale=1">' +
-                       '<link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397"><style>' +
-                       'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
-                       'a:hover { color: #222; border-bottom-color: #555}' +
-                       'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
-                       '</style></head><body><article class="typesettings golden">' +
-                       simplemde.markdown(md) +
-                       '</article><footer><a href="/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU">Publish your own essay with IPFessay</a>' +
-                       ' | <a href="https://gitlab.com/stavros/IPFessay">Gitlab</a></footer></body></html>'
-            }
-
-            function publish() {
-                // Render the Markdown essay and post it to the IPFS daemon.
-                var f = new FormData();
-                simplemde.codemirror.save();
-                var md = $("text-input").value;
-                f.append("path", new Blob([renderPage(md)], {type: "text/html"}), "path");
-
-                var req = new XMLHttpRequest();
-                req.addEventListener("load", publishCallback);
-                req.open("post", window.location.protocol + "//" + window.location.hostname + ":5001/api/v0/add?stream-channels=true");
-                req.send(f);
-            }
-
-            window.onload = function() {
-                simplemde = new SimpleMDE({
-                    autofocus: true,
-                    element: document.getElementById("text-input"),
-                    toolbar: [
-                        "bold", "italic", "heading", "|",
-                        "quote", "unordered-list", "ordered-list", "|",
-                        "link", "image", "table", "code", "|",
-                        "preview", "side-by-side", "fullscreen", "|",
-                        "guide"
-                    ],
-                });
-            }
-        </script>
     </head>
     <body>
-        <div id="layout">
-            <div id="main">
-                <div class="header">
-                    <h1><img src="assets/images/logo.svg" width=40 /> IPFessay</h1>
-                    <h2>Easily publish uncensorable essays.</h2>
-                </div>
-
-                <div class="content pure-g">
-                    <div class="pure-u-1">
-                        <br />
-                        <textarea id="text-input" style="width: 100%;" oninput="this.editor.update()" rows="15" cols="60">
+        <header>
+            <img src="assets/images/logo.svg" width="100"/>
+            <h1>IPFessay</h1>
+            <h2>Easily publish uncensorable essays</h2>
+        </header>
+        <article>
+            <textarea id="text-input" style="width: 100%;" oninput="this.editor.update()" rows="15" cols="60">
 # Your essay
 
 Write your essay in this text box, using [Markdown syntax](https://daringfireball.net/projects/markdown/syntax), and use the toolbar at the top to compose or to preview how it will look.
@@ -106,19 +56,27 @@ Some plain text.
 Code blocks
     are supported too.
 ~~~
-</textarea>
-                        <button onclick="publish()" class="button-publish pure-button">Publish!</button>
-                        <span id="published-link"></span>
-                    </div>
-                </div>
+            </textarea>
 
-                <div class="footer">
-                    <p>
-                    <a href="https://gitlab.com/stavros/IPFessay">Gitlab repository</a> |
-                    <a href="https://twitter.com/stavros">@stavros</a>
-                    </p>
-                </div>
-            </div>
+            <button class="button-publish pure-button">Publish</button>
+
+        </article>
+
+        <footer>
+            <p>
+            <a href="https://gitlab.com/stavros/IPFessay">Gitlab repository</a> |
+            <a href="https://twitter.com/stavros">@stavros</a>
+            </p>
+        </footer>
+
+        <div id="overlay">
+            <span class="loading"><em>Loading...</em></span>
+
+            <section>
+                <h3>Here is your published link</h3>
+                <a href="://ipfs.io" target="_blank">ipfs.io</a>
+                <button class="pure-button">Close</button>
+            </section>
         </div>
 
     </body>

@@ -1,131 +1,80 @@
+/** General **/
+
 html {
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: Helvetica, Geneva, sans-serif;
 }
 
 body {
     color: #666;
 }
 
-.pure-img-responsive {
-    max-width: 100%;
-    height: auto;
-}
-
-/*
-Add transition to containers so they can push in and out.
-*/
-#layout {
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
-}
-
-/*
-This is the parent `<div>` that contains the menu and the content area.
-*/
-#layout {
-    position: relative;
-    left: 0;
-    padding-left: 0;
-}
-/*
-The content `<div>` is where all your content goes.
-*/
-.content {
-    margin: 0 auto;
-    padding: 0 2em;
-    margin-bottom: 50px;
-    line-height: 1.6em;
-}
-
-.footer {
+html,
+body {
     margin: 0;
-    color: #aaa;
-    text-align: center;
-    padding: 2.5em 2em;
-    border-top: 1px solid #eee;
 }
 
-a {
+/** Helpers **/
+
+.noscroll { 
+    overflow: hidden;
+}
+
+/** Structure **/
+
+header {
+    text-align: left;
+    padding: 2.5em;
+}
+header img {
+    float: left;
+    margin-right: 2em;
+}
+header h1 {
+    margin: 0 0 0.2em;
+    font-size: 3em;
+    font-weight: 600;
+}
+header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #ccc;
+}
+article {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+footer {
+    margin: 0 2em 2em;
+    color: #aaa;
+    text-align: right;
+}
+footer p {
+    margin: 0;
+}
+footer a {
     color: #7abbed;
     text-decoration: none;
 }
 
-.header {
-     margin: 0;
-     color: #333;
-     text-align: center;
-     padding: 2.5em 2em 0;
-     border-bottom: 1px solid #eee;
- }
-    .header h1 {
-        margin: 0.2em 0;
-        font-size: 3em;
-        font-weight: 300;
-    }
-     .header h2 {
-        font-weight: 300;
-        color: #ccc;
-        padding: 0;
-        margin-top: 0;
-    }
+/** MCE overrides **/
 
-.content-subhead {
-    margin: 50px 0 20px 0;
-    font-weight: 300;
-    color: #888;
+.editor-toolbar,
+.CodeMirror {
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+}
+.editor-toolbar {
+    background-color: #f9f9f9 !important;
 }
 
-
-
-/*
-The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
-appears on the left side of the page.
-*/
-
-
-/* -- Responsive Styles (Media Queries) ------------------------------------- */
-
-/*
-Hides the menu at `48em`, but modify this based on your app's needs.
-*/
-@media (min-width: 48em) {
-
-    .header,
-    .content {
-        padding-left: 2em;
-        padding-right: 2em;
-    }
-
-    #layout {
-        left: 0;
-    }
-}
-
-@media (max-width: 48em) {
-    /* Only apply this when the window is small. Otherwise, the following
-    case results in extra padding on the left:
-        * Make the window small.
-        * Tap the menu to trigger the active state.
-        * Make the window large again.
-    */
-    #layout.active {
-        position: relative;
-        left: 150px;
-    }
-}
-
-section {
-    margin: 1em;
-}
+/** Button **/
 
 button {
     overflow: visible;
     text-transform: none;
     font: inherit;
-    margin: 0;
 }
 
 .pure-button {
@@ -146,19 +95,130 @@ button {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.button-publish {
-    color: white;
+    color: rgba(0, 0, 0, .5);
+    font-weight: bold;
     border-radius: 4px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgb(122, 202, 206);
+    display: block;
+    transition: background-color .25s ease-in;
+    color: #fff;
+    border-color: rgb(82, 137, 132);
+    border-width: 1px 1px 3px;
+    border-style: solid;
+    font-family: Helvetica;
+}
+.pure-button:hover {
+    background-color: #93d4d7;
 }
 
 .button-publish {
-    background: rgb(28, 184, 65);
-    font-size:  125%;
+    margin: 2em auto 3em;    
+    font-size:  150%;
 }
 
-#published-link {
-    margin-left: 1em;
+/** Overlay **/
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 1;
+    transform: perspective(600px);
+    display: none;
+}
+
+#overlay section {
+    background: #fff;
+    width: 50%;
+    margin: 0 auto;
+    transform: translate3d(-50%, -50%,0);
+    left: 50%;
+    top: 50%;
+    position: fixed;
+    padding: 20px;
+    text-align: center;
+    min-width: 400px;
+    max-width: 500px;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0px 10px 12px -5px rgba(0,0,0,.25);
+}
+#overlay section h3 {
+    margin: 0 0 20px;
+}
+#overlay section a {
+    color: #7abbed;
+    padding: 10px 5px;
+    font-size: 15px;
+}
+#overlay .pure-button {
+    margin: 20px auto 0;
+    display: block;
+}
+
+
+#overlay .loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 30px;
+    height: 30px;
+    transform: translate3d(-50%, -50%, 0) rotate3d(0,1,1, -90deg) scale3d(1,1,1);
+    transform-style: preserve-3d;
+    animation: pulse 1s infinite alternate;
+}
+#overlay .loading:before,
+#overlay .loading:after,
+#overlay .loading em {
+    content: '';
+    display: block;
+    background-color: #4a9ea1;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999999px;
+    box-shadow: inset 0 0 0px 4px rgba(0, 0, 0, .25);
+}
+#overlay .loading:before {
+    transform: translate3d(50%,0%,0) rotateY(90deg);
+    background: rgb(110,183,187);
+}
+#overlay .loading em {
+    transform: translate3d(0,-100%,15px);
+    background: rgb(122,202,206);
+}
+#overlay .loading:after {
+    transform: translate3d(0%,-150%,0) rotateX(   90deg );
+    background: rgb(95,157,161);
+}
+
+@keyframes pulse {
+    from {
+        transform: translate3d(-50%, -50%, 0) rotate3d(0,1,1, -90deg) scale3d(1,1,1);
+    }
+    to {
+        transform: translate3d(-50%, -50%, 0) rotate3d(0,1,1, -90deg) scale3d(1.5,1.5,1.5);    
+    }
+}
+
+/** Media queries **/
+
+@media (max-width: 48em) {
+    header {
+        text-align: center;
+    }
+    header img {
+        float: none;
+        width: 70px;
+        margin: 0 0 1em 0;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    header h2 {
+        font-size: 1.2em;
+    }
 }
