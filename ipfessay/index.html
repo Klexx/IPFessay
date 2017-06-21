@@ -110,6 +110,9 @@
 
                         document.querySelector('#overlay a#essay-link').href = url;
                         document.querySelector('#overlay a#essay-link').innerText = url;
+
+                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io" + url;
+                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io" + url;
                     },
 
                     publishCallback: function() {
@@ -203,9 +206,30 @@ Code blocks
             <section>
                 <h3>Your essay link</h3>
                 <p>
-                Here's the permanent, immutable link to your essay:
+                Here's the permanent, immutable IPFS link to your essay:
                 </p>
-                <a id="essay-link" href="" target="_blank"></a>
+                <a id="essay-link" class="essayaddr" href="" target="_blank"></a>
+
+                <p>
+                You can also tell people to access it through a bridge, such as
+                the one on <a href="https://ipfs.io/">IPFS.io</a>:
+                </p>
+
+                <a id="ipfsio-link" class="essayaddr" href="" target="_blank"></a>
+                <p>
+                <strong>NOTE:</strong> This essay will only be available on IPFS
+                for as long as someone has it on their computer. Right now,
+                you're probably the only person in the world who is sharing
+                this, so you may want to send it to a few more people (and maybe
+                ask them to "pin" it) just to make distribution more resilient.
+                </p>
+                <p>
+                Alternatively, you can use services like <a
+                    href="https://pinbits.io/" target="_blank">PinBits</a> (no
+                affiliation) to "pin" your essay (i.e. pay the service to "host"
+                it for you). This costs something like a cent a year for
+                something as small as an essay.
+                </p>
                 <button class="pure-button">Close</button>
             </section>
         </div>
