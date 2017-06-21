@@ -106,8 +106,8 @@
                         document.querySelector('#overlay .loading').style.display = 'none';
                         document.querySelector('#overlay section').style.display = 'block';
 
-                        document.querySelector('#overlay a').href = url;
-                        document.querySelector('#overlay a').innerText = url;
+                        document.querySelector('#overlay a#essay-link').href = url;
+                        document.querySelector('#overlay a#essay-link').innerText = url;
                     },
 
                     publishCallback: function() {
@@ -199,8 +199,8 @@ Code blocks
             <span class="loading"><em>Loading...</em></span>
 
             <section>
-                <h3>Here is your published link</h3>
-                <a href="://ipfs.io" target="_blank">ipfs.io</a>
+                <h3>Your essay</h3>
+                <a id="essay-link" href="://ipfs.io" target="_blank">ipfs.io</a>
                 <button class="pure-button">Close</button>
             </section>
         </div>
