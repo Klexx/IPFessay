@@ -113,7 +113,8 @@
                     '<article class="typesettings golden">' +
                     this.simplemde.markdown(md) +
                     '</article>' +
-                    '<footer><a href="https://gitlab.com/stavros/IPFessay">Publish your own essay with IPFessay</a></footer>' +
+                    '<footer><a href="/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU">Publish your own essay with IPFessay</a>' +
+                       ' | <a href="https://gitlab.com/stavros/IPFessay">Gitlab</a></footer>' +
                     '</body>' +
                     '</html>';
         }
